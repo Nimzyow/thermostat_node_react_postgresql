@@ -1,0 +1,12 @@
+.thermometer {
+  display: flex;
+  justify-content: center;
+  color: red;
+  align-items: center;
+  border-bottom: 1px solid black;
+  flex-grow: 2;
+}
+
+.header {
+  font-size: 3em;
+}

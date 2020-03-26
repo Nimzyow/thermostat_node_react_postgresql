@@ -10,24 +10,12 @@ import Save from "./components/save/save";
 function App() {
   return (
     <div className="outer-container">
-      <div className="slightly-bigger">
-        <ThermometerDisplay />
-      </div>
-      <div className="even-split">
-        <UpDown />
-      </div>
-      <div className="even-split">
-        <PowerSaving />
-      </div>
-      <div className="even-split">
-        <OutsideTemp />
-      </div>
-      <div className="even-split">
-        <Reset />
-      </div>
-      <div className="even-split">
-        <Save />
-      </div>
+      <ThermometerDisplay />
+      <UpDown />
+      <PowerSaving />
+      <OutsideTemp />
+      <Reset />
+      <Save />
     </div>
   );
 }

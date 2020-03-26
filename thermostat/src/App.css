@@ -1,16 +1,19 @@
 .outer-container {
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
+  border: 2px solid black;
   margin: 3px;
   height: 100vh;
 }
 
-.slightly-bigger {
-  flex-grow: 1.5;
+.thermometer-display {
+  flex-grow: 0.3;
 }
 
 .even-split {
   flex-grow: 1;
-  border-top: 1px solid black;
+  border-top: 2px solid black;
+}
+
+.control-container {
 }

@@ -1,0 +1,13 @@
+.component {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-grow: 0.5;
+}
+
+.border {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
