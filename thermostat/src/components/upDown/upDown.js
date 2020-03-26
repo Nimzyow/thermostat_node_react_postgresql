@@ -1,17 +1,23 @@
 import React from "react";
 import "./upDown.css";
+import PropTypes from "prop-types";
 
-const upDown = () => {
+const UpDown = ({ increaseTemp, decreaseTem }) => {
   return (
     <div className="component">
-      <div className="border">
+      <div className="border" onClick={() => increaseTemp()}>
         <h1>+</h1>
       </div>
-      <div className="border">
+      <div className="border" onClick={() => decreaseTem()}>
         <h1>-</h1>
       </div>
     </div>
   );
 };
 
-export default upDown;
+UpDown.propTypes = {
+  increaseTemp: PropTypes.func.isRequired,
+  decreaseTem: PropTypes.func.isRequired
+};
+
+export default UpDown;

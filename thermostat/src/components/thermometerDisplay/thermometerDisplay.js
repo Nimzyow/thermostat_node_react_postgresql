@@ -1,12 +1,17 @@
 import React, { Fragment } from "react";
 import "./thermometerDisplay.css";
+import PropTypes from "prop-types";
 
-const thermometerDisplay = () => {
+const ThermometerDisplay = ({ temperature }) => {
   return (
     <div className="thermometer">
-      <p className="header">20</p>
+      <p className="header">{temperature}</p>
     </div>
   );
 };
 
-export default thermometerDisplay;
+ThermometerDisplay.propTypes = {
+  temperature: PropTypes.number.isRequired
+};
+
+export default ThermometerDisplay;
