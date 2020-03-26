@@ -8,13 +8,30 @@ import Reset from "./components/reset/reset";
 import Save from "./components/save/save";
 
 function App() {
+  const MINIMUMTEMPERATURE = 10;
+  const MAXTEMPERATUREPOWERON = 25;
+  const MAXTEMPERATUREPOWEROFF = 35;
   const [temperature, setTemperature] = useState(20);
+  const [powerSave, setPowerSave] = useState(true);
 
   const increaseTemperature = () => {
-    setTemperature(temperature + 1);
+    if (temperatureIncreaseCheck()) {
+      setTemperature(temperature + 1);
+    }
   };
+
   const decreaseTemperature = () => {
-    setTemperature(temperature - 1);
+    if (temperature > MINIMUMTEMPERATURE) {
+      setTemperature(temperature - 1);
+    }
+  };
+
+  const temperatureIncreaseCheck = () => {
+    if (powerSave) {
+      return temperature < MAXTEMPERATUREPOWERON;
+    } else {
+      return temperature < MAXTEMPERATUREPOWEROFF;
+    }
   };
 
   return (
