@@ -16,12 +16,21 @@ app.get("/", (req, res) => {
 app.post("/save", async (req, res) => {
   try {
     await Sequelize.query("DELETE FROM thermo;");
-    const [results, metadata] = await Sequelize.query(
+    await Sequelize.query(
       `INSERT INTO thermo (temperature, city) VALUES ('${req.body.temperature}', '${req.body.city}');`
     );
     res.json({
       msg: `Inserted tempertaure of ${req.body.temperature} and city of ${req.body.city} into thermo table`
     });
+  } catch (error) {
+    console.error(error);
+  }
+});
+
+app.get("/load", async (req, res) => {
+  try {
+    const [results, metadata] = await Sequelize.query(`SELECT * FROM thermo;`);
+    res.json({ msg: results });
   } catch (error) {
     console.error(error);
   }
