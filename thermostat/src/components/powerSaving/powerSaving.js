@@ -1,8 +1,12 @@
 import React from "react";
 import "./powerSaving.css";
 
-const powerSaving = () => {
-  return <div className="container">power saving</div>;
+const PowerSaving = () => {
+  return (
+    <div className="container" data-test="container">
+      power saving on
+    </div>
+  );
 };
 
-export default powerSaving;
+export default PowerSaving;
