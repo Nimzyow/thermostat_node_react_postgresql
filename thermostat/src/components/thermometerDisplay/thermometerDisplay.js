@@ -4,8 +4,10 @@ import PropTypes from "prop-types";
 
 const ThermometerDisplay = ({ temperature }) => {
   return (
-    <div className="thermometer">
-      <p className="header">{temperature}</p>
+    <div className="thermometer" data-test="container">
+      <p className="header" data-test="text">
+        {temperature}
+      </p>
     </div>
   );
 };
