@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { findTestByAttr } from "../../../test/TestUtils";
+import { findTestByAttr, checkProps } from "../../../test/TestUtils";
 
 import UpDown from "./upDown";
 
@@ -52,6 +52,15 @@ describe("upDown.js", () => {
       const minus = findTestByAttr(wrapper, "down");
       minus.simulate("click");
       expect(queryDecreaseTemp).toHaveBeenCalledTimes(1);
+    });
+  });
+  describe("prop check", () => {
+    test("does not throw warning with expected props", () => {
+      const expectedProps = {
+        increaseTemp: queryIncreaseTemp,
+        decreaseTem: queryDecreaseTemp
+      };
+      checkProps(UpDown, expectedProps);
     });
   });
 });
