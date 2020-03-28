@@ -5,7 +5,7 @@ import ThermometerDisplay from "./components/thermometerDisplay/thermometerDispl
 import UpDown from "./components/upDown/upDown";
 import PowerSaving from "./components/powerSaving/powerSaving";
 import OutsideTemp from "./components/outsideTemp/outsideTemp";
-import * as DATA from "./DATA/ApiKey";
+import * as DATA from "./DATA/data";
 import Reset from "./components/reset/reset";
 import Save from "./components/save/save";
 
