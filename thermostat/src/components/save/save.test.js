@@ -13,7 +13,7 @@ describe("Save.js", () => {
   };
 
   const setup = (props = {}) => {
-    const setupProps = { ...defaultProps };
+    const setupProps = { ...defaultProps, ...props };
     return shallow(<Save {...setupProps} />);
   };
 
@@ -33,6 +33,11 @@ describe("Save.js", () => {
     test("save", () => {
       const component = findTestByAttr(wrapper, "container");
       expect(component.text()).toBe("save");
+    });
+    test("saved", () => {
+      wrapper = setup({ saveSwitch: mockSave, save: true });
+      const component = findTestByAttr(wrapper, "container");
+      expect(component.text()).toBe("saved");
     });
   });
   describe("delegation", () => {
