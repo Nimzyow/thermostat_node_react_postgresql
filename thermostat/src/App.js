@@ -19,16 +19,31 @@ function App() {
   const [city, setCity] = useState("London");
 
   useEffect(() => {
+    loadFromDB();
     load();
   }, []);
+
+  const loadFromDB = async () => {
+    try {
+      await axios.get("http://localhost:4000/load").then(res => {
+        const gotCity = res.data.msg[0].city;
+        setCity(gotCity);
+        const gotTemp = res.data.msg[0].temperature;
+        setOutTemp(parseFloat(gotTemp));
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const load = async () => {
     try {
       await axios
         .get(
-          `http://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=${DATA.APIKEY}&units=metric`
+          `http://api.openweathermap.org/data/2.5/weather?q=${city},uk&appid=${DATA.APIKEY}&units=metric`
         )
         .then(res => {
+          setCity(res.data.name);
           setOutTemp(res.data.main.temp);
         });
     } catch (error) {
