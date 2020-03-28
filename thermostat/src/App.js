@@ -34,14 +34,21 @@ function App() {
     }
   };
 
+  const powerSaveSwitch = () => {
+    setPowerSave(!powerSave);
+  };
+
   return (
     <div className="outer-container">
       <ThermometerDisplay temperature={temperature} />
       <UpDown
-        increaseTemp={increaseTemperature}
-        decreaseTem={decreaseTemperature}
+        increaseTemp={() => increaseTemperature()}
+        decreaseTem={() => decreaseTemperature()}
       />
-      <PowerSaving />
+      <PowerSaving
+        powerSaveSwitch={() => powerSaveSwitch()}
+        powerSave={powerSave}
+      />
       <OutsideTemp />
       <Reset />
       <Save />

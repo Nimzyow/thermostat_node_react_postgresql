@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { findTestByAttr } from "../../../test/TestUtils";
+import { findTestByAttr, checkProps } from "../../../test/TestUtils";
 
 import ThermometerDisplay from "./thermometerDisplay";
 
@@ -41,5 +41,10 @@ describe("thermometerDisplay.js", () => {
       const text = findTestByAttr(wrapper, "text");
       expect(text.text()).toContain(22);
     });
+  });
+
+  test("does not throw warning with expected props", () => {
+    const expectedProps = { temperature: 20 };
+    checkProps(ThermometerDisplay, expectedProps);
   });
 });
