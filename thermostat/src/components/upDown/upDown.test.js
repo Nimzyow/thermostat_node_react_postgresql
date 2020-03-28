@@ -16,6 +16,7 @@ describe("upDown.js", () => {
       />
     );
   };
+
   describe("render test", () => {
     let wrapper;
     beforeEach(() => {
@@ -54,6 +55,7 @@ describe("upDown.js", () => {
       expect(queryDecreaseTemp).toHaveBeenCalledTimes(1);
     });
   });
+
   describe("prop check", () => {
     test("does not throw warning with expected props", () => {
       const expectedProps = {

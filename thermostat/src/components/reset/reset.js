@@ -1,8 +1,17 @@
 import React from "react";
 import "./reset.css";
+import PropTypes from "prop-types";
 
-const reset = () => {
-  return <div className="container">reset</div>;
+const Reset = ({ resetSwitch }) => {
+  return (
+    <div className="container" data-test="container" onClick={resetSwitch}>
+      reset
+    </div>
+  );
 };
 
-export default reset;
+Reset.propTypes = {
+  resetSwitch: PropTypes.func.isRequired
+};
+
+export default Reset;
