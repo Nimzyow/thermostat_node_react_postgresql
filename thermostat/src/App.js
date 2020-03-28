@@ -17,11 +17,18 @@ function App() {
   const [outTemp, setOutTemp] = useState(null);
   const [powerSave, setPowerSave] = useState(true);
   const [city, setCity] = useState("London,uk");
+  const [save, setSave] = useState(false);
 
   useEffect(() => {
     loadFromDB();
     loadFromWeatherAPI(city);
   }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setSave(false);
+    }, 3000);
+  }, [save]);
 
   const loadFromDB = async () => {
     try {
@@ -86,22 +93,25 @@ function App() {
   };
 
   const saveSwitch = async () => {
-    const toSave = {
-      temperature: temperature,
-      city: city
-    };
-    const toSaveJSON = JSON.stringify(toSave);
-    const config = {
-      headers: {
-        "Content-Type": "application/json"
-      }
-    };
+    if (!save) {
+      const toSave = {
+        temperature: temperature,
+        city: city
+      };
+      const toSaveJSON = JSON.stringify(toSave);
+      const config = {
+        headers: {
+          "Content-Type": "application/json"
+        }
+      };
 
-    try {
-      await axios.post("http://localhost:4000/save", toSaveJSON, config);
-      console.log("post successful");
-    } catch (err) {
-      console.error(err);
+      try {
+        await axios.post("http://localhost:4000/save", toSaveJSON, config);
+        console.log("post successful");
+        setSave(true);
+      } catch (err) {
+        console.error(err);
+      }
     }
   };
 
@@ -126,7 +136,7 @@ function App() {
           resetSwitch();
         }}
       />
-      <Save saveSwitch={() => saveSwitch()} />
+      <Save saveSwitch={() => saveSwitch()} save={save} />
     </div>
   );
 }

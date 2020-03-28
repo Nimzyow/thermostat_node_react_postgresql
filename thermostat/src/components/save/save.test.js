@@ -7,8 +7,14 @@ import Save from "./save";
 describe("Save.js", () => {
   const mockSave = jest.fn();
 
-  const setup = () => {
-    return shallow(<Save saveSwitch={mockSave} />);
+  const defaultProps = {
+    saveSwitch: mockSave,
+    save: false
+  };
+
+  const setup = (props = {}) => {
+    const setupProps = { ...defaultProps };
+    return shallow(<Save {...setupProps} />);
   };
 
   let wrapper;
@@ -37,7 +43,7 @@ describe("Save.js", () => {
     });
   });
   test("expected prop types does not throw warning", () => {
-    const expectedProps = { saveSwitch: mockSave };
+    const expectedProps = { saveSwitch: mockSave, save: false };
     checkProps(Save, expectedProps);
   });
 });
