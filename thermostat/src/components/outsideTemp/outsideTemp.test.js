@@ -5,9 +5,12 @@ import { findTestByAttr, checkProps } from "../../../test/TestUtils";
 import OutsideTemp from "./outsideTemp";
 
 describe("OutsideTemp.js", () => {
+  const mockChangeCity = jest.fn();
+
   const defaultProps = {
     city: "London",
-    outsideTemperature: 10
+    outsideTemperature: 10,
+    changeCity: mockChangeCity
   };
 
   const setup = (props = {}) => {
@@ -37,7 +40,11 @@ describe("OutsideTemp.js", () => {
   });
 
   test("does not throw warning on expected propTypes", () => {
-    const expectedProps = { city: "London", outsideTemperature: 10 };
+    const expectedProps = {
+      changeCity: mockChangeCity,
+      city: "London",
+      outsideTemperature: 10
+    };
     checkProps(OutsideTemp, expectedProps);
   });
 });

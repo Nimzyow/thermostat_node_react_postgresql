@@ -16,11 +16,11 @@ function App() {
   const [temperature, setTemperature] = useState(20);
   const [outTemp, setOutTemp] = useState(null);
   const [powerSave, setPowerSave] = useState(true);
-  const [city, setCity] = useState("");
+  const [city, setCity] = useState("London,uk");
 
   useEffect(() => {
     loadFromDB();
-    loadFromWeatherAPI();
+    loadFromWeatherAPI(city);
   }, []);
 
   const loadFromDB = async () => {
@@ -28,6 +28,7 @@ function App() {
       await axios.get("http://localhost:4000/load").then(res => {
         const gotCity = res.data.msg[0].city;
         setCity(gotCity);
+        console.log(city);
         const gotTemp = res.data.msg[0].temperature;
         setTemperature(parseFloat(gotTemp));
       });
@@ -36,19 +37,23 @@ function App() {
     }
   };
 
-  const loadFromWeatherAPI = async () => {
+  const loadFromWeatherAPI = async city => {
     try {
       await axios
         .get(
-          `http://api.openweathermap.org/data/2.5/weather?q=${city},uk&appid=${DATA.APIKEY}&units=metric`
+          `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${DATA.APIKEY}&units=metric`
         )
         .then(res => {
-          setCity(res.data.name);
           setOutTemp(res.data.main.temp);
         });
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const changeCity = city => {
+    setCity(city);
+    loadFromWeatherAPI(city);
   };
 
   const increaseTemperature = () => {
@@ -111,7 +116,11 @@ function App() {
         powerSaveSwitch={() => powerSaveSwitch()}
         powerSave={powerSave}
       />
-      <OutsideTemp city={city} outsideTemperature={outTemp} />
+      <OutsideTemp
+        changeCity={e => changeCity(e)}
+        city={city}
+        outsideTemperature={outTemp}
+      />
       <Reset
         resetSwitch={() => {
           resetSwitch();

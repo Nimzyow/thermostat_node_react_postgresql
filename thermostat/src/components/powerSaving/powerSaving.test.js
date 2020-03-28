@@ -8,17 +8,13 @@ describe("powerSaving.js", () => {
   const mockPowerSaveSwitch = jest.fn();
 
   const defaultProps = {
+    powerSaveSwitch: mockPowerSaveSwitch,
     powerSave: true
   };
 
   const setup = (props = {}) => {
     const setupProps = { ...defaultProps, ...props };
-    return shallow(
-      <PowerSaving
-        powerSaveSwitch={() => mockPowerSaveSwitch()}
-        {...setupProps}
-      />
-    );
+    return shallow(<PowerSaving {...setupProps} />);
   };
 
   describe("renders without error", () => {
@@ -36,7 +32,10 @@ describe("powerSaving.js", () => {
       expect(component.text()).toBe("power saving on");
     });
     test("power saving off", () => {
-      const wrapper = setup({ powerSave: false });
+      const wrapper = setup({
+        powerSave: false,
+        powerSaveSwitch: mockPowerSaveSwitch
+      });
       const component = findTestByAttr(wrapper, "container");
       expect(component.text()).toBe("power saving off");
     });
