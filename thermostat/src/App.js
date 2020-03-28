@@ -16,11 +16,11 @@ function App() {
   const [temperature, setTemperature] = useState(20);
   const [outTemp, setOutTemp] = useState(null);
   const [powerSave, setPowerSave] = useState(true);
-  const [city, setCity] = useState("London");
+  const [city, setCity] = useState("");
 
   useEffect(() => {
     loadFromDB();
-    load();
+    loadFromWeatherAPI();
   }, []);
 
   const loadFromDB = async () => {
@@ -29,14 +29,14 @@ function App() {
         const gotCity = res.data.msg[0].city;
         setCity(gotCity);
         const gotTemp = res.data.msg[0].temperature;
-        setOutTemp(parseFloat(gotTemp));
+        setTemperature(parseFloat(gotTemp));
       });
     } catch (error) {
       console.log(error);
     }
   };
 
-  const load = async () => {
+  const loadFromWeatherAPI = async () => {
     try {
       await axios
         .get(
