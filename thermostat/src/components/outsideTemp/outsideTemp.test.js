@@ -6,7 +6,8 @@ import OutsideTemp from "./outsideTemp";
 
 describe("OutsideTemp.js", () => {
   const defaultProps = {
-    city: "London"
+    city: "London",
+    outsideTemperature: 10
   };
 
   const setup = (props = {}) => {
@@ -24,14 +25,19 @@ describe("OutsideTemp.js", () => {
 
   describe("text inside body", () => {
     test("displays correct city", () => {
-      const wrapper = setup({ city: "Paris" });
+      const wrapper = setup({ city: "Paris", outsideTemperature: 10 });
       const component = findTestByAttr(wrapper, "container");
       expect(component.text()).toContain("Paris");
+    });
+    test("displays correct temperature", () => {
+      const wrapper = setup({ city: "Paris", outsideTemperature: 10 });
+      const component = findTestByAttr(wrapper, "container");
+      expect(component.text()).toContain("10");
     });
   });
 
   test("does not throw warning on expected propTypes", () => {
-    const expectedProps = { city: "London" };
+    const expectedProps = { city: "London", outsideTemperature: 10 };
     checkProps(OutsideTemp, expectedProps);
   });
 });

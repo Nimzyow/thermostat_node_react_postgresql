@@ -1,8 +1,17 @@
 import React from "react";
 import "./save.css";
+import PropTypes from "prop-types";
 
-const save = () => {
-  return <div className="container">save</div>;
+const Save = ({ saveSwitch }) => {
+  return (
+    <div className="container" data-test="container" onClick={saveSwitch}>
+      save
+    </div>
+  );
 };
 
-export default save;
+Save.propTypes = {
+  saveSwitch: PropTypes.func.isRequired
+};
+
+export default Save;
