@@ -13,6 +13,7 @@ function App() {
   const MAXTEMPERATUREPOWEROFF = 35;
   const [temperature, setTemperature] = useState(20);
   const [powerSave, setPowerSave] = useState(true);
+  const [city, setCity] = useState("London");
 
   const increaseTemperature = () => {
     if (temperatureIncreaseCheck()) {
@@ -39,8 +40,11 @@ function App() {
   };
 
   const resetSwitch = () => {
-    console.log("hello world!");
+    setTemperature(20);
+    setPowerSave(true);
   };
+
+  const saveSwitch = () => {};
 
   return (
     <div className="outer-container" data-test="outer-container">
@@ -53,7 +57,7 @@ function App() {
         powerSaveSwitch={() => powerSaveSwitch()}
         powerSave={powerSave}
       />
-      <OutsideTemp />
+      <OutsideTemp city={city} />
       <Reset
         resetSwitch={() => {
           resetSwitch();
