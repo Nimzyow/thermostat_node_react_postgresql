@@ -2,7 +2,7 @@
 
 This was a passion project inspired by a Makers Academy Thermostat challenge done with Jquery, Javascript, HTML and Sinatra.
 
-I decided to challenge myself by completing this challenge with Node.js and Express.js for the backend and React for the front end. React components use hooks and functional components to keep code as clean as possible. Testing was done with jest and enzyme.
+I decided to challenge myself by completing this challenge with Node.js and Express.js for the backend and React for the front end. React components use hooks and functional components to keep code as clean as possible. Testing was done with Cypress, jest and enzyme.
 
 # `To install dependencies`
 
@@ -55,10 +55,18 @@ And that's it for setting up the database! Phew!!
 
 # `To run tests`
 
+For Jest and Enzyme tests:
 cd into thermostat and run:
 
 ```
 $ npm test
+```
+
+For Cypress Tests:
+Stay in the thermostat directory or cd into it if you have not done so already and run:
+
+```
+$ npm run cypress
 ```
 
 # `Running the project`
