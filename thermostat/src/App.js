@@ -116,27 +116,29 @@ function App() {
   };
 
   return (
-    <div className="outer-container" data-test="outer-container">
-      <ThermometerDisplay temperature={temperature} />
-      <UpDown
-        increaseTemp={() => increaseTemperature()}
-        decreaseTem={() => decreaseTemperature()}
-      />
-      <PowerSaving
-        powerSaveSwitch={() => powerSaveSwitch()}
-        powerSave={powerSave}
-      />
-      <OutsideTemp
-        changeCity={e => changeCity(e)}
-        city={city}
-        outsideTemperature={outTemp}
-      />
-      <Reset
-        resetSwitch={() => {
-          resetSwitch();
-        }}
-      />
-      <Save saveSwitch={() => saveSwitch()} save={save} />
+    <div className="place-center">
+      <div className="outer-container" data-test="outer-container">
+        <ThermometerDisplay temperature={temperature} />
+        <UpDown
+          increaseTemp={() => increaseTemperature()}
+          decreaseTem={() => decreaseTemperature()}
+        />
+        <PowerSaving
+          powerSaveSwitch={() => powerSaveSwitch()}
+          powerSave={powerSave}
+        />
+        <OutsideTemp
+          changeCity={e => changeCity(e)}
+          city={city}
+          outsideTemperature={outTemp}
+        />
+        <Reset
+          resetSwitch={() => {
+            resetSwitch();
+          }}
+        />
+        <Save saveSwitch={() => saveSwitch()} save={save} />
+      </div>
     </div>
   );
 }

@@ -15,5 +15,17 @@
   border-top: 2px solid black;
 }
 
-.control-container {
+@media screen and (min-width: 500px) {
+  .outer-container {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    margin: 3px;
+    height: 100vh;
+    width: 500px;
+  }
+  .place-center {
+    display: flex;
+    justify-content: center;
+  }
 }
