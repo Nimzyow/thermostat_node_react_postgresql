@@ -9,3 +9,9 @@
 .citySelection {
   font-size: x-large;
 }
+
+select {
+  text-align: center;
+  text-align-last: center;
+  /* webkit*/
+}

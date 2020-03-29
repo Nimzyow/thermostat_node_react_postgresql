@@ -36,10 +36,18 @@ describe("thermometerDisplay.js", () => {
       const text = findTestByAttr(wrapper, "text");
       expect(text.text()).toContain(20);
     });
+
     test("22 when 22 is passed down with props", () => {
       const wrapper = setup({ temperature: 22 });
       const text = findTestByAttr(wrapper, "text");
       expect(text.text()).toContain(22);
+    });
+
+    test("green text if between 18 and 25", () => {
+      const wrapper = setup();
+      const component = findTestByAttr(wrapper, "container");
+      const componentHasGreenClass = component.hasClass("thermometer green");
+      expect(componentHasGreenClass).toBe(true);
     });
   });
 
