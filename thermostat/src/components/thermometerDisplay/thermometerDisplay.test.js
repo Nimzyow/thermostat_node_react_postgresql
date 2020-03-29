@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { shallow, mount } from "enzyme";
 import { findTestByAttr, checkProps } from "../../../test/TestUtils";
 
 import ThermometerDisplay from "./thermometerDisplay";
@@ -48,6 +48,15 @@ describe("thermometerDisplay.js", () => {
       const component = findTestByAttr(wrapper, "container");
       const componentHasGreenClass = component.hasClass("thermometer green");
       expect(componentHasGreenClass).toBe(true);
+    });
+    test("red text when temperature is 25", () => {
+      //we must use mount here because currently shallow does not support the use of useEffect. Since we are depending on useEffect for the class to change, we need to test with mount.
+      const wrapperMount = () => {
+        return mount(<ThermometerDisplay temperature={25} />);
+      };
+      const component = findTestByAttr(wrapperMount(), "container");
+      const componentHasRedClass = component.hasClass("thermometer red");
+      expect(componentHasRedClass).toBe(true);
     });
   });
 
