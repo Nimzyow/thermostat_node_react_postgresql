@@ -11,7 +11,7 @@ const ThermometerDisplay = ({ temperature }) => {
     } else if (temperature < 25) {
       setColor("green");
     } else setColor("red");
-  });
+  }, [temperature]);
 
   return (
     <div className={`thermometer ${color}`} data-test="container">

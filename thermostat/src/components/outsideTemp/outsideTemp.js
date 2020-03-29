@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 const OutsideTemp = ({ city, outsideTemperature, changeCity }) => {
   return (
-    <div className="container" data-test="container">
+    <div className="outsideTemp-container" data-test="container">
       <p>outside temperature in</p>
       <h1>{city}</h1>
       <h2>{outsideTemperature} degrees</h2>

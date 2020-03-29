@@ -1,6 +1,7 @@
-.container {
+.powerSaving-container {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-grow: 1;
+  border-top: 1px solid black;
 }

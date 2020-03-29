@@ -4,7 +4,11 @@ import PropTypes from "prop-types";
 
 const Reset = ({ resetSwitch }) => {
   return (
-    <div className="container" data-test="container" onClick={resetSwitch}>
+    <div
+      className="reset-container"
+      data-test="container"
+      onClick={resetSwitch}
+    >
       reset
     </div>
   );

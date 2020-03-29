@@ -1,4 +1,4 @@
-.container {
+.outsideTemp-container {
   flex-grow: 2;
   display: flex;
   flex-direction: column;

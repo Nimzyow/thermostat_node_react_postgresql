@@ -4,7 +4,11 @@ import PropTypes from "prop-types";
 
 const PowerSaving = ({ powerSaveSwitch, powerSave }) => {
   return (
-    <div className="container" data-test="container" onClick={powerSaveSwitch}>
+    <div
+      className="powerSaving-container"
+      data-test="container"
+      onClick={powerSaveSwitch}
+    >
       power saving {powerSave ? "on" : "off"}
     </div>
   );

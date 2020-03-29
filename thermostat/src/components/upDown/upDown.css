@@ -1,4 +1,4 @@
-.component {
+.upDown-Container {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -6,7 +6,13 @@
   flex-grow: 0.5;
 }
 
-.border {
+.borderUp {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.borderDown {
   flex-grow: 1;
   display: flex;
   justify-content: center;

@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 const Save = ({ saveSwitch, save }) => {
   return (
-    <div className="container" data-test="container" onClick={saveSwitch}>
+    <div className="save-container" data-test="container" onClick={saveSwitch}>
       {save ? "saved" : "save"}
     </div>
   );

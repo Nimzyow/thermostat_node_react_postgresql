@@ -12,7 +12,10 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "node index.js",
+    "thermostat": "npm start --prefix thermostat",
+    "dev": "concurrently \"npm run server\" \"npm run thermostat\""
   },
   "author": "",
   "license": "ISC"
