@@ -13,6 +13,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
     "server": "node index.js",
     "thermostat": "npm start --prefix thermostat",
     "dev": "concurrently \"npm run server\" \"npm run thermostat\""
