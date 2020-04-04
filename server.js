@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const Sequelize = require("./db");
+const Pool = require("./db");
 const bodyParser = require("body-parser");
 const path = require("path");
 
@@ -16,8 +16,9 @@ app.get("/", (req, res) => {
 
 app.post("/save", async (req, res) => {
   try {
-    await Sequelize.query("DELETE FROM thermo;");
-    await Sequelize.query(
+    const client = await Pool.connect();
+    await client.query("DELETE FROM thermo;");
+    await client.query(
       `INSERT INTO thermo (temperature, city) VALUES ('${req.body.temperature}', '${req.body.city}');`
     );
     res.json({
@@ -30,10 +31,14 @@ app.post("/save", async (req, res) => {
 
 app.get("/load", async (req, res) => {
   try {
-    const [results, metadata] = await Sequelize.query(`SELECT * FROM thermo;`);
+    const client = await Pool.connect();
+    const result = await client.query("SELECT * FROM thermo;");
+    const results = { results: result ? result.rows : null };
     res.json({ msg: results });
+    //
   } catch (error) {
     console.error(error);
+    res.send("Error" + error);
   }
 });
 

@@ -1,4 +1,4 @@
-# **`Thermostat with Node, Express and React`**
+# **`Thermostat with Node, Express and React Using Postgresql database`**
 
 This was a passion project inspired by a Makers Academy Thermostat challenge done with Jquery, Javascript, HTML and Sinatra.
 
