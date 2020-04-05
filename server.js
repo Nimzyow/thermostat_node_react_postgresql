@@ -3,6 +3,7 @@ const cors = require("cors");
 const Pool = require("./db");
 const bodyParser = require("body-parser");
 const path = require("path");
+require("dotenv").config();
 
 const app = express();
 
@@ -15,31 +16,40 @@ app.get("/", (req, res) => {
 });
 
 app.post("/save", async (req, res) => {
-  try {
-    const client = await Pool.connect();
-    await client.query("DELETE FROM thermo;");
-    await client.query(
-      `INSERT INTO thermo (temperature, city) VALUES ('${req.body.temperature}', '${req.body.city}');`
+  await Pool.query("DELETE FROM thermo;", (error, results) => {
+    if (error) {
+      throw error;
+    }
+    Pool.query(
+      `INSERT INTO thermo (temperature, city) VALUES ('${req.body.temperature}', '${req.body.city}');`,
+      (error, results) => {
+        if (error) {
+          throw error;
+        }
+        res.json({
+          msg: `Inserted tempertaure of ${req.body.temperature} and city of ${req.body.city} into thermo table`,
+        });
+      }
     );
-    res.json({
-      msg: `Inserted tempertaure of ${req.body.temperature} and city of ${req.body.city} into thermo table`,
-    });
-  } catch (error) {
-    console.error(error);
-  }
+  });
 });
 
 app.get("/load", async (req, res) => {
-  try {
-    const client = await Pool.connect();
-    const result = await client.query("SELECT * FROM thermo;");
-    const results = { results: result ? result.rows : null };
+  //try {
+  //const client = await Pool.connect();
+  await Pool.query("SELECT * FROM thermo;", (error, results) => {
+    if (error) {
+      throw error;
+    }
     res.json({ msg: results });
-    //
-  } catch (error) {
-    console.error(error);
-    res.send("Error" + error);
-  }
+  });
+  //   const results = { results: result ? result.rows : null };
+  //   res.json({ msg: results });
+  //   //
+  // } catch (error) {
+  //   console.error(error);
+  //   res.send("Error" + error);
+  // }
 });
 
 if (process.env.NODE_ENV === "production") {

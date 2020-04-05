@@ -32,11 +32,12 @@ function App() {
 
   const loadFromDB = async () => {
     try {
-      await axios.get("http://localhost:4000/load").then(res => {
-        const gotCity = res.data.msg[0].city;
+      await axios.get("http://localhost:4000/load").then((res) => {
+        console.log(res.data.msg.rows[0].temperature);
+        const gotCity = res.data.msg.rows[0].city;
         setCity(gotCity);
         console.log(city);
-        const gotTemp = res.data.msg[0].temperature;
+        const gotTemp = res.data.msg.rows[0].temperature;
         setTemperature(parseFloat(gotTemp));
       });
     } catch (error) {
@@ -44,13 +45,13 @@ function App() {
     }
   };
 
-  const loadFromWeatherAPI = async city => {
+  const loadFromWeatherAPI = async (city) => {
     try {
       await axios
         .get(
           `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${DATA.APIKEY}&units=metric`
         )
-        .then(res => {
+        .then((res) => {
           setOutTemp(res.data.main.temp);
         });
     } catch (error) {
@@ -58,7 +59,7 @@ function App() {
     }
   };
 
-  const changeCity = city => {
+  const changeCity = (city) => {
     setCity(city);
     loadFromWeatherAPI(city);
   };
@@ -96,13 +97,13 @@ function App() {
     if (!save) {
       const toSave = {
         temperature: temperature,
-        city: city
+        city: city,
       };
       const toSaveJSON = JSON.stringify(toSave);
       const config = {
         headers: {
-          "Content-Type": "application/json"
-        }
+          "Content-Type": "application/json",
+        },
       };
 
       try {
@@ -128,7 +129,7 @@ function App() {
           powerSave={powerSave}
         />
         <OutsideTemp
-          changeCity={e => changeCity(e)}
+          changeCity={(e) => changeCity(e)}
           city={city}
           outsideTemperature={outTemp}
         />
