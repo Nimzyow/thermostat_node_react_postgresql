@@ -11,9 +11,9 @@ app.use(cors());
 //body parser middleware to see whats inside the body of the post request
 app.use(bodyParser());
 
-app.get("/", (req, res) => {
-  res.json({ msg: "hello world!" });
-});
+// app.get("/", (req, res) => {
+//   res.json({ msg: "hello world!" });
+// });
 
 app.post("/save", async (req, res) => {
   await Pool.query("DELETE FROM thermo;", (error, results) => {
