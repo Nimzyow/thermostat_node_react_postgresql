@@ -16,7 +16,8 @@
     "start": "node index.js",
     "server": "node index.js",
     "thermostat": "npm start --prefix thermostat",
-    "dev": "concurrently \"npm run server\" \"npm run thermostat\""
+    "dev": "concurrently \"npm run server\" \"npm run thermostat\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix thermostat && npm run build --prefix thermostat"
   },
   "author": "",
   "license": "ISC"
