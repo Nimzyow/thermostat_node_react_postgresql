@@ -51,7 +51,7 @@ function App() {
     try {
       await axios
         .get(
-          `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.APIKEY}&units=metric`
+          `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.APIKEY}&units=metric`
         )
         .then((res) => {
           setOutTemp(res.data.main.temp);

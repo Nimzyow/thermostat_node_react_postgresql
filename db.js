@@ -9,7 +9,7 @@ const connectionString = `postgres://${process.env.DB_USER}:${process.env.DB_PAS
 console.log(isProduction);
 
 const pool = new Pool({
-  //connectionString: isProduction ? process.env.DATABASE_URL : connectionString,
+  connectionString: isProduction ? process.env.DATABASE_URL : connectionString,
   database: "thermostat",
   ssl: isProduction,
 });
