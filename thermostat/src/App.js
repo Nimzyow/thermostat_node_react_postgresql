@@ -5,9 +5,11 @@ import ThermometerDisplay from "./components/thermometerDisplay/thermometerDispl
 import UpDown from "./components/upDown/upDown";
 import PowerSaving from "./components/powerSaving/powerSaving";
 import OutsideTemp from "./components/outsideTemp/outsideTemp";
-import * as DATA from "./DATA/data";
+//import * as DATA from "./DATA/data";
 import Reset from "./components/reset/reset";
 import Save from "./components/save/save";
+const dotenv = require("dotenv");
+dotenv.config();
 
 function App() {
   const MINIMUMTEMPERATURE = 10;
@@ -49,7 +51,7 @@ function App() {
     try {
       await axios
         .get(
-          `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${DATA.APIKEY}&units=metric`
+          `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.APIKEY}&units=metric`
         )
         .then((res) => {
           setOutTemp(res.data.main.temp);
